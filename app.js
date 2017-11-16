@@ -49,7 +49,9 @@ app.use(function(err, req, res, next) {
 var q = new Query(config);
 var seconds = 30, the_interval = seconds * 1000;
 setInterval(function() {
-  q.getAlgos();
+  var algos = q.getAlgos();
+
+
   //q.getWorkers();
 
   //q.getHistory();
