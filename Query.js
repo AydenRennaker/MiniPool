@@ -21,7 +21,7 @@ Query.prototype.getAlgos = function(){
   request('https://api.nicehash.com/api?method=stats.provider.ex&addr=' + this.config.addr, function (error, response, body) {
     if (!error && response.statusCode == 200) {
        var importedJSON = JSON.parse(body);
-       if(!importedJSON) {
+       if(importedJSON.result.error) {
          console.log("error", importedJSON);
          return;
        }
