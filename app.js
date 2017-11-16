@@ -10,7 +10,7 @@ var Query = require('./Query');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var users = require('./routes/stats');
+var stats = require('./routes/stats');
 
 var app = express();
 
