@@ -59,7 +59,7 @@ setInterval(function() {
 }, the_interval);
 
 async function getAlgos() {
-  var activeAlgos = q.getAlgos();
+  var activeAlgos = await q.getAlgos();
 
   if(activeAlgos.length) {
     activeAlgos.forEach(function(algo) {
