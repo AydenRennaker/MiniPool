@@ -10,8 +10,8 @@ Query.prototype.getWorkers = function(algo){
     if (!error && response.statusCode == 200) {
        var importedJSON = JSON.parse(body);
        var algos = importedJSON.result.current;
-       importedJSON.result.workers.forEach(function(algo) {
-         console.log(algo);
+       importedJSON.result.workers.forEach(function(result) {
+         console.log(algo, result);
        })
     }
   })
@@ -31,7 +31,7 @@ Query.prototype.getAlgos = function(){
          var algos = importedJSON.result.current;
 
          importedJSON.result.current.forEach(function(algo) {
-           console.log("test", algo);
+           //console.log("test", algo);
            if(algo.data[0].a) {
              activeAlgos.push(algo.algo);
            }
@@ -42,30 +42,6 @@ Query.prototype.getAlgos = function(){
     })
   });
 
-}
-
-Query.prototype.getAlgosFull = function(){
-  request('https://api.nicehash.com/api?method=stats.provider.ex&addr=' + this.config.addr, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-       var importedJSON = JSON.parse(body);
-       if(importedJSON.result.error) {
-         console.log("error", importedJSON);
-         return;
-       }
-       var algos = importedJSON.result.current;
-       var activeAlgos = []
-       importedJSON.result.current.forEach(function(algo) {
-         console.log("test", algo);
-         if(algo.data[0].a) {
-           activeAlgos.push(algo.algo);
-         }
-       })
-       console.log(JSON.stringify(activeAlgos))
-       activeAlgos.forEach(function(algo) {
-         Query.getWorkers(algo)
-       });
-    }
-  })
 }
 
 Query.prototype.getHistory = function(){
