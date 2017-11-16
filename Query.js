@@ -19,8 +19,9 @@ Query.prototype.getWorkers = function(algo){
 
 Query.prototype.getAlgos = function(){
   var activeAlgos = [];
+  var addr = this.config.addr;
   return new Promise(function(resolve, reject) {
-    request('https://api.nicehash.com/api?method=stats.provider.ex&addr=' + this.config.addr, function (error, response, body) {
+    request('https://api.nicehash.com/api?method=stats.provider.ex&addr=' + addr, function (error, response, body) {
       if (!error && response.statusCode == 200) {
          var importedJSON = JSON.parse(body);
          if(importedJSON.result.error) {
