@@ -14,8 +14,8 @@ Query.prototype.getWorkers = function(algo){
        var algos = importedJSON.result.current;
        importedJSON.result.workers.forEach(function(result) {
 
-         var worker = new Worker(result[0], result[4], result[1].a, result[6]);
-          worker.save(function(err, worker){});
+         var worker = new Worker(result[0]);
+         worker.save();
          console.log(algo, result);
        })
     }
