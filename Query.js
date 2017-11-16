@@ -21,11 +21,15 @@ Query.prototype.getAlgos = function(){
   request('https://api.nicehash.com/api?method=stats.provider.ex&addr=' + this.config.addr, function (error, response, body) {
     if (!error && response.statusCode == 200) {
        var importedJSON = JSON.parse(body);
+       if(!importedJSON) {
+         console.log("error", importedJSON);
+         return;
+       }
        var algos = importedJSON.result.current;
        var activeAlgos = []
        importedJSON.result.current.forEach(function(algo) {
          console.log("test", algo);
-         if(algo.data.a) {
+         if(algo.data[0].a) {
            activeAlgos.push(algo.algo);
          }
        })
