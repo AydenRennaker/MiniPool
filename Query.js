@@ -23,7 +23,7 @@ Query.prototype.getAlgos = function(){
        var importedJSON = JSON.parse(body);
        var algos = importedJSON.result.current;
        var activeAlgos = []
-       algos.forEach(function(algo) {
+       importedJSON.result.current.forEach(function(algo) {
          console.log("test", algo);
          if(algo.data.a) {
            activeAlgos.push(algo.algo);
