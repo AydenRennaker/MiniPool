@@ -5,7 +5,7 @@ var Query = require('../Query');
 
 /* GET users listing. */
 router.get('/:algo', function(req, res, next) {
-  res.send(algo);
+  res.render('index', { title: algo });
 });
 
 module.exports = router;
