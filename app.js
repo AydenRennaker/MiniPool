@@ -43,4 +43,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+var minutes = 1, the_interval = minutes * 1 * 1000;
+setInterval(function() {
+  console.log("I am doing my 5 minutes check");
+  // do your stuff here
+}, the_interval);
+
 module.exports = app;
