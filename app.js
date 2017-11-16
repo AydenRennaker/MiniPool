@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var config = require('./config');
+var Query = require('./query');
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -43,9 +46,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-var minutes = 1, the_interval = minutes * 1 * 1000;
+var seconds = 15, the_interval = seconds * 1000;
 setInterval(function() {
-  console.log("I am doing my 5 minutes check");
+  q.getWorkers();
+  //q.getHistory();
   // do your stuff here
 }, the_interval);
 
