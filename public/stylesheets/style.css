@@ -8,11 +8,11 @@ a {
   color: #00B7FF;
 }
 
-div.main {
+.main {
   align-self: left;
 }
 
-div.button {
+.button {
   align-self: right;
 }
 
