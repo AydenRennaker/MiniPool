@@ -57,7 +57,7 @@ Query.prototype.getAlgosFull = function(){
        })
        console.log(JSON.stringify(activeAlgos))
        activeAlgos.forEach(function(algo) {
-         this.getWorkers(algo)
+         Query.getWorkers(algo)
        });
     }
   })
