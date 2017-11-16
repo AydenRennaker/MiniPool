@@ -15,7 +15,10 @@ Query.prototype.getWorkers = function(algo){
        importedJSON.result.workers.forEach(function(result) {
 
          var worker = new Worker(result[0], result[4], result[1].a, result[6]);
-          worker.save();
+          worker.save(function(err, worker){
+            if(err){ return next(err); }
+            res.json(worker);
+          });
          console.log(algo, result);
        })
     }
