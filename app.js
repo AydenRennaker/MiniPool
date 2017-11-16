@@ -53,7 +53,7 @@ app.use(function(err, req, res, next) {
 });
 
 var q = new Query(config);
-var seconds = 30, the_interval = seconds * 1000;
+var seconds = 32, the_interval = seconds * 1000;
 setInterval(function() {
   getAlgos();
 
