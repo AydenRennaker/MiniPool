@@ -48,7 +48,7 @@ app.use(function(err, req, res, next) {
 
 var seconds = 15, the_interval = seconds * 1000;
 setInterval(function() {
-  q.getWorkers();
+  Query.getWorkers();
   //q.getHistory();
   // do your stuff here
 }, the_interval);
