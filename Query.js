@@ -1,4 +1,6 @@
 var request = require('request');
+var mongoose = require('mongoose');
+var Worker = mongoose.model('Worker');
 
 module.exports = Query;
 function Query(config) {
@@ -11,6 +13,9 @@ Query.prototype.getWorkers = function(algo){
        var importedJSON = JSON.parse(body);
        var algos = importedJSON.result.current;
        importedJSON.result.workers.forEach(function(result) {
+
+         var worker = new Worker(result[0], result[4], result[1].a, result[6]);
+          worker.save();
          console.log(algo, result);
        })
     }
