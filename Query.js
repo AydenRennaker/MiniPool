@@ -17,6 +17,23 @@ Query.prototype.getWorkers = function(){
   })
 }
 
+Query.prototype.getAlgos = function(){
+  request('https://api.nicehash.com/api?method=stats.provider.ex&addr=' + this.config.addr, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+       var importedJSON = JSON.parse(body);
+       var algos = importedJSON.result.current;
+       var activeAlgos = []
+       algos.forEach(function(algo) {
+         if(algo.data.a) {
+           activeAlgos.push(algo.algo);
+         }
+       })
+       console.log(JSON.stringify(activeAlgos))
+       return activeAlgos;
+    }
+  })
+}
+
 Query.prototype.getHistory = function(){
   request('https://api.nicehash.com/api?method=stats.provider.ex&addr=' + this.config.addr, function (error, response, body) {
     if (!error && response.statusCode == 200) {
