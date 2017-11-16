@@ -49,7 +49,7 @@ app.use(function(err, req, res, next) {
 var q = new Query(config);
 var seconds = 30, the_interval = seconds * 1000;
 setInterval(function() {
-  var algos = q.getAlgosFull();
+  getAlgos();
 
 
   //q.getWorkers();
@@ -57,5 +57,15 @@ setInterval(function() {
   //q.getHistory();
   // do your stuff here
 }, the_interval);
+
+async function getAlgos() {
+  var activeAlgos = q.getAlgos();
+
+  if(activeAlgos.length) {
+    activeAlgos.forEach(function(algo) {
+      q.getWorkers(algo);
+    })
+  }
+}
 
 module.exports = app;
