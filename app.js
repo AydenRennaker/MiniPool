@@ -49,6 +49,22 @@ app.use(function(err, req, res, next) {
 var q = new Query(config);
 var seconds = 30, the_interval = seconds * 1000;
 setInterval(function() {
+  async.waterfall([
+    function(callback){
+        callback(null, 'one', 'two');
+    },
+    function(arg1, arg2, callback){
+        // arg1 now equals 'one' and arg2 now equals 'two'
+        callback(null, 'three');
+    },
+    function(arg1, callback){
+        // arg1 now equals 'three'
+        callback(null, 'done');
+    }
+], function (err, result) {
+   // result now equals 'done'
+});
+
   getAlgos();
 
 
