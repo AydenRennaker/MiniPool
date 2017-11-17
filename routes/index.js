@@ -21,6 +21,7 @@ router.get('/alloc', function(req, res, next) {
       console.log(key);
       var workerNames = _.groupBy(groups[key], g => g.workerName);
       console.log(workerNames);
+      result.push(workerNames);
       // Object.keys(workerNames).forEach(function(name) {
       //   var speeds = _.sumBy(groups[key], function(obj) {
       //     return obj.speed * obj.difficulty;
