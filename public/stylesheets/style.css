@@ -8,8 +8,18 @@ a {
   color: #00B7FF;
 }
 
+.container {
+  width: 100%;
+  border: 1px;
+}
+header, footer {
+  padding: 1em;
+  color: white;
+  background-color: #008CBA;
+  text-align: center;
+}
 .main {
-  align-self: center;
+  align-self: left;
 }
 
 .button {
