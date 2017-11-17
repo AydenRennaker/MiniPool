@@ -23,15 +23,17 @@ router.get('/alloc', function(req, res, next) {
       //console.log(workerNames);
       result.push(workerNames);
       Object.keys(workerNames).forEach(function(name) {
-        console.log(key, name)
-        res.json(groups[key])
+        var speeds = _.sumBy(groups[key][name], function(obj) {
+          return obj.speed * obj.difficulty;
+        });
+        console.log(key, name, speeds)
+
         //console.log(key, name, groups[key][name].length);
 
         var speeds = _.sumBy(groups[key][name], function(obj) {
           return obj.speed * obj.difficulty;
         });
         result.push(speeds);
-        console.log(key, JSON.stringify(speeds));
       })
     })
 
