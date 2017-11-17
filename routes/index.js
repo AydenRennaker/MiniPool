@@ -18,15 +18,16 @@ router.get('/alloc', function(req, res, next) {
     if(err){ return next(err); }
     var groups = _.groupBy(workers, w => w.algo);
     Object.keys(groups).forEach(function(key) {
-      var workerNames = _.groupBy(groups[key], g => g.workerName);
-      console.log(workerNames);
-      Object.keys(workerNames).forEach(function(name) {
-        var speeds = _.sumBy(groups[key], function(obj) {
-          return obj.speed * obj.difficulty;
-        });
-        result.push(speeds);
-        console.log(key, JSON.stringify(speeds));
-      })
+      console.log(key);
+      // var workerNames = _.groupBy(groups[key], g => g.workerName);
+      // console.log(workerNames);
+      // Object.keys(workerNames).forEach(function(name) {
+      //   var speeds = _.sumBy(groups[key], function(obj) {
+      //     return obj.speed * obj.difficulty;
+      //   });
+      //   result.push(speeds);
+      //   console.log(key, JSON.stringify(speeds));
+      // })
     })
 
 
