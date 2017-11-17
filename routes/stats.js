@@ -8,7 +8,7 @@ var Worker = mongoose.model('Worker');
 
 /* GET users listing. */
 router.get('/:algo', function(req, res, next) {
-  Worker.find({algo: req.params.algo}.function(err, workers){
+  Worker.find({algo: req.params.algo}, function(err, workers){
     if(err){ return next(err); }
     res.render('workers', { title: req.params.algo, workers: workers});
   });
