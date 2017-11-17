@@ -13,13 +13,23 @@ router.get('/workers', function(req, res, next) {
 });
 
 router.get('/alloc', function(req, res, next) {
+  var result = []
   Worker.find(function(err, workers){
     if(err){ return next(err); }
     var groups = _.groupBy(workers, w => w.algo);
+    Object.keys(groups).forEach(function(key) {
+      var workerNames = _.groupBy(groups[key], g => g.workerName);
+      Object.keys(workerNames).forEach(function(name) {
+        var speeds = _.sumBy(groups[key], function(obj) {
+          return obj.speed * obj.difficulty;
+        });
+        result.push(speeds);
+        console.log(key, JSON.stringify(speeds));
+      })
+    })
 
 
-
-    res.json(groups);
+    res.json(result);
   });
 });
 
