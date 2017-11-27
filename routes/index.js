@@ -13,7 +13,7 @@ router.get('/workers', function(req, res, next) {
 });
 
 router.get('/alloc', function(req, res, next) {
-  var result = []
+  var result = {}
   Worker.find(function(err, workers){
     if(err){ return next(err); }
     var groups = _.groupBy(workers, w => w.algo);
@@ -27,7 +27,11 @@ router.get('/alloc', function(req, res, next) {
         console.log(key, name, speeds)
 
         //console.log(key, name, groups[key][name].length);
-        result.push({workerName: name, avgSpeed: speeds, algorithm: key});
+        if(!result[key]) {
+          result[key] = [];
+        } else {
+          result[key].push({workerName: name, totalShare: speeds, algorithm: key});
+        }
       })
     })
 
