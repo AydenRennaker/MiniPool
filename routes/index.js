@@ -27,7 +27,7 @@ router.get('/alloc', function(req, res, next) {
         console.log(key, name, speeds)
 
         //console.log(key, name, groups[key][name].length);
-        if(!result[key]) {
+        if(!result[key].length) {
           result[key] = [];
         } else {
           result[key].push({workerName: name, totalShare: speeds, algorithm: key});
