@@ -1,8 +1,12 @@
 extends layout
 
 block content
-  main
-    h1= title
-    p Welcome to #{title}
-    button
-      Sign Up Now
+  h1= title
+  p Welcome to #{title}
+  a(href='http://ec2-52-33-103-137.us-west-2.compute.amazonaws.com:3000/workers'): button(type="button") Workers
+  a(href='http://ec2-52-33-103-137.us-west-2.compute.amazonaws.com:3000/stats/24'): button(type="button") Equihash Stats
+  a(href='http://ec2-52-33-103-137.us-west-2.compute.amazonaws.com:3000/alloc'): button(type="button") Share of Work Done
+
+  a(href='https://miner.nicehash.com'): button(type="button") Nice Hash Miner Download
+
+  p Nicehash is a program to mine cryptocurrency. Join us by mining to: "394wzXHRLVjRqdLmbrBqJR9gbzzmNE9Hey"
