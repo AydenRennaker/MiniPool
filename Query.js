@@ -7,8 +7,6 @@ function Query(config) {
   this.config = config;
 }
 
-Date.prototype.getUnixTime = function() { return this.getTime()/1000|0 };
-
 Query.prototype.getWorkers = function(algo){
   request('https://api.nicehash.com/api?method=stats.provider.workers&addr=' + this.config.addr + '&algo=' + algo, function (error, response, body) {
     if (!error && response.statusCode == 200) {
@@ -18,6 +16,7 @@ Query.prototype.getWorkers = function(algo){
 
          var worker = new Worker({workerName: result[0], difficulty: result[4], speed: result[1].a, algo: result[6]});
          worker.save();
+         console.log(algo, result);
        })
     }
   })
