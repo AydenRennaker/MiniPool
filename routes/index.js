@@ -26,16 +26,17 @@ router.get('/alloc', function(req, res, next) {
         });
         console.log(key, name, speeds)
 
-        //console.log(key, name, groups[key][name].length);
         if(result[key] == null) {
           console.log("first");
           result[key] = [];
-        } else {
-          result[key].push({workerName: name, totalShare: speeds, algorithm: key});
         }
-
+        result[key].push({workerName: name, totalShare: speeds, algorithm: key});
       })
     })
+    Object.keys(result).forEach(function(key) {
+      console.log(_.sumBy(result[key], totalShare));
+    }
+
 
 
     res.json(result);
