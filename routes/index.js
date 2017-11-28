@@ -35,7 +35,7 @@ router.get('/alloc', function(req, res, next) {
     })
     Object.keys(result).forEach(function(key) {
       console.log(_.sumBy(result[key], totalShare));
-    }
+    });
 
 
 
