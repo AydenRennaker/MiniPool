@@ -28,13 +28,13 @@ router.get('/alloc', function(req, res, next) {
 
         if(result[key] == null) {
           console.log("first");
-          result[key] = [];
+          result[key] = {workers: []};
         }
-        result[key].push({workerName: name, totalShare: speeds, algorithm: key});
+        result[key]['workers'].push({workerName: name, totalShare: speeds, algorithm: key});
       })
     })
     Object.keys(result).forEach(function(key) {
-      console.log(_.sumBy(result[key], 'totalShare'));
+      result[key].totalShare = _.sumBy(result[key], 'totalShare'));
     });
 
 
