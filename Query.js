@@ -14,7 +14,7 @@ Query.prototype.getWorkers = function(algo){
        var algos = importedJSON.result.current;
        importedJSON.result.workers.forEach(function(result) {
 
-         var worker = new Worker({workerName: result[0], difficulty: result[4], speed: result[1].a, algo: result[6]});
+         var worker = new Worker({workerName: result[0], difficulty: result[4], speed: result[1].a, algo: result[6], utc: Math.floor(Date.now()/300000)});
          worker.save();
          console.log(algo, result);
        })
