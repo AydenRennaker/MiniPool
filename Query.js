@@ -18,7 +18,7 @@ Query.prototype.getWorkers = function(algo){
 
          var worker = new Worker({workerName: result[0], difficulty: result[4], speed: result[1].a, algo: result[6]});
          worker.save();
-         console.log(algo, result, Date.getUnixTime());
+         console.log(algo, result, Date.time());
        })
     }
   })
