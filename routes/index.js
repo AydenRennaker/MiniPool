@@ -34,7 +34,7 @@ router.get('/alloc', function(req, res, next) {
       })
     })
     Object.keys(result).forEach(function(key) {
-      result[key].totalShare = _.sumBy(result[key], 'totalShare'));
+      result[key].totalShare = _.sumBy(result[key], 'totalShare');
     });
 
 
