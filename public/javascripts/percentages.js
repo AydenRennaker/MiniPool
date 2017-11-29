@@ -6,7 +6,7 @@ angular.module('voting',[])
     $scope.ballot = [];
     $scope.getAll = function() {
 			return $http.get('/alloc').success(function(data){
-				angular.copy(data['24'], $scope.candidates);
+				angular.copy(data['24'].workers, $scope.candidates);
 			});
     };
     $scope.getAll();
