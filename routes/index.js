@@ -51,7 +51,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/percentages', function(req, res, next) {
-  res.render('percentages', { title: 'Mini Pool' });
+  res.render('percentages.html', { title: 'Mini Pool' });
 });
 
 module.exports = router;
