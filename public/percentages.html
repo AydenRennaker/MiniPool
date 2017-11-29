@@ -11,7 +11,7 @@
 
 <h1>Current Candidates</h1>
 <div ng-repeat="candidate in candidates.workers | orderBy: 'Name'">
-<input type="checkbox" ng-model="candidate.selected">  {{candidate.totalShare / canidates.totalShare * 100}} 
+<input type="checkbox" ng-model="candidate.selected">  {{candidate.workerName}} {{candidate.totalShare }} {{canidates.totalShare }}
 </div>
 <button ng-click="dovote()">
 Submit Votes
