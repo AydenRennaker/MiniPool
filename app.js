@@ -53,15 +53,9 @@ app.use(function(err, req, res, next) {
 });
 
 var q = new Query(config);
-var seconds = 32, the_interval = seconds * 1000;
+var seconds = 60, the_interval = seconds * 1000;
 setInterval(function() {
-  getAlgos();
-
-
-  //q.getWorkers();
-
-  //q.getHistory();
-  // do your stuff here
+  q.getEtherMineData();
 }, the_interval);
 
 async function getAlgos() {

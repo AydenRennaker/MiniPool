@@ -1,11 +1,27 @@
 var request = require('request');
 var mongoose = require('mongoose');
 var Worker = mongoose.model('Worker');
+var EtherMineStats = mongoose.model('EtherMineStats');
+
 
 module.exports = Query;
 function Query(config) {
   this.config = config;
 }
+
+Query.prototype.getEtherMineData = function(){
+  request('https://api.ethermine.org/miner/' + this.config.addr + '/currentStats', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+       var importedJSON = JSON.parse(body);
+
+       if(importedJSON.status == "OK") {
+         var data = new EtherMineStats(importedJSON.data);
+         data.save();
+       }
+    }
+  })
+}
+
 
 Query.prototype.getWorkers = function(algo){
   request('https://api.nicehash.com/api?method=stats.provider.workers&addr=' + this.config.addr + '&algo=' + algo, function (error, response, body) {
