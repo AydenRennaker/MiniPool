@@ -54,7 +54,7 @@ app.use(function(err, req, res, next) {
 });
 
 var q = new Query(config);
-var seconds = 60, the_interval = seconds * 1000;
+var seconds = 600, the_interval = seconds * 1000;
 setInterval(function() {
   q.getEtherMineData();
 }, the_interval);
