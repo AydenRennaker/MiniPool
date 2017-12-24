@@ -10,7 +10,7 @@ var EtherMineStats = mongoose.model('EtherMineStats');
 
 /* GET users listing. */
 router.get('/EtherMineStats', function(req, res, next) {
-  EtherMineStats.find(, function(err, stats){
+  EtherMineStats.find(function(err, stats){
     if(err){ return next(err); }
     res.json(stats);
   });
