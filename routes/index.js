@@ -13,7 +13,7 @@ router.get('/workers', function(req, res, next) {
 });
 
 router.get('/alloc', function(req, res, next) {
-  var result = []
+  var result = {}
   Worker.find(function(err, workers){
     if(err){ return next(err); }
     var groups = _.groupBy(workers, w => w.algo);
@@ -26,10 +26,17 @@ router.get('/alloc', function(req, res, next) {
         });
         console.log(key, name, speeds)
 
-        //console.log(key, name, groups[key][name].length);
-        result.push({workerName: name, totalShare: speeds, algorithm: key});
+        if(result[key] == null) {
+          console.log("first");
+          result[key] = {workers: []};
+        }
+        result[key]['workers'].push({workerName: name, totalShare: speeds, algorithm: key});
       })
     })
+    Object.keys(result).forEach(function(key) {
+      result[key].totalShare = _.sumBy(result[key]['workers'], 'totalShare');
+    });
+
 
 
     res.json(result);
@@ -41,6 +48,10 @@ router.get('/alloc', function(req, res, next) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Mini Pool' });
+});
+
+router.get('/percentages', function(req, res, next) {
+  res.render('percentages.html', { title: 'Mini Pool' });
 });
 
 module.exports = router;
