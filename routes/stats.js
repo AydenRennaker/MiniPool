@@ -24,6 +24,7 @@ router.get('/minDay', function(req, res, next) {
     let min = _.minBy(stats, function(s){
       let coinsPerMinPerMH = s.coinsPerMin / (s.currentHashrate / 1000000);
       s.coinsPerMinPerMH = coinsPerMinPerMH;
+      console.log(coinsPerMinPerMH);
       return coinsPerMinPerMH;
     });
 
