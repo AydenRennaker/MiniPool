@@ -22,7 +22,9 @@ router.get('/minDay', function(req, res, next) {
   EtherMineStats.find(function(err, stats){
     if(err){ return next(err); }
     let min = _.minBy(stats, function(s){
-      return s.coinsPerMin / s.currentHashrate;
+      let coinsPerMinPerMH = s.coinsPerMin / (s.currentHashrate / 1000000);
+      s.coinsPerMinPerMH = coinsPerMinPerMH;
+      return coinsPerMinPerMH;
     });
 
 
